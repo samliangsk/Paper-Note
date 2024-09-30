@@ -45,9 +45,21 @@ an accidental hijack
 
 example: Pakistan's announcements trying to block Youtube
 
+### Filtering
+
+each AS should filter what routes it announces and what it accepts
+
+* implemented as accept list in one's BGP config (in you RIB)
+* info comes either from yourself (ex: w/your customers)
+* Big databases (ex: Routing Arbiter and IRR) of publicly provided routing policies, so they can know about what happens w/ ASes that are not their customers
+* Tier-1 ASes, because they have lots of clients and peers, and also their clients have clients...
+* IXP: does not filter, because there's no such need, and they are mostly private connections
+* CDN/hypergiants (Google/Meta): Lots of peers, and there are a ton of customers,
+
+
 ### RPKI: Resource Public Key Infrastructrure
 
-* each originator of a prefix has a signed (with their public key) record (RPKI record) that says who they are
+* each originator of a prefix has a signed (with their public-private key pair) record (RPKI record) that says who they are
 * anyone can find AS's public keys, and confirm their signatures -> verify the correct person is announcing the prefix
 * pro: all the security is offline, and can be done daily (so router CPU does not matter)
 * con: only protects the origin, but most routing requires several hops
