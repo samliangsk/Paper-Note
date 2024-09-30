@@ -64,8 +64,34 @@ each AS should filter what routes it announces and what it accepts
 * pro: all the security is offline, and can be done daily (so router CPU does not matter)
 * con: only protects the origin, but most routing requires several hops
 
+What: RPKI
+* USC publishes: 
+    * [AS74, 128.125/16]_K_usc.
+    * and they publish the public key of K_usc
+
+* NTT
+    * get the route 128.125/16 and AS path (2226, 74) from BGP
+    * once a day, they check that AS 74 is the correct origin for this path
+        * get the public key that was used to sign the prefix
+        * check it
+
+Pro: 
+* if someone fakes a route for 128.125/16, others can know it's wrong
+
+Con: 
+* RPKI signers (the riginal internet registries: ARIN, APNIC, RIPE, LACNIC, AfriNIC)
+* adding security checks makes us vulnerable to security failures by the RIRs
+* does not neccessarily protect against route leaks, IF the origin AS is still correct
+    * if someone in the middle of an AS path goes bad, they can still re-route
+* requires trust in the RPKI
+* if you run this once a day then we can only deploy new routes slowly
+
 ### BGPSEC
 
 * sign all BGP messages with your peers, and verify them
-* pro: lets us validate every hop on the path (not just the originator)
-* con: online cryptography (and people that router processors are not very fast)
+* pro: 
+    * lets us validate every hop on the path (not just the originator)
+* con: 
+    * online cryptography (and people that router processors are not very fast)
+    * relatively little benefit until almost almost everyone does it
+standardized 2017 (RFC8205)
