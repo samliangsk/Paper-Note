@@ -95,3 +95,15 @@ Con:
     * online cryptography (and people that router processors are not very fast)
     * relatively little benefit until almost almost everyone does it
 standardized 2017 (RFC8205)
+
+### Questions
+
+should there be a single authority to promote adoption?
+* Centralized authorities are against the decentralized internet
+* and ASes have to interact with their own governments
+* but we would like to move forward?
+    * centralized non-authorities bodies like IETF published MANRS
+    * decentralized authorities: many governments make rulings for their own people
+
+could blockchain help protect routing?
+* something like the shared blockchain ledger create a decentralized authority
