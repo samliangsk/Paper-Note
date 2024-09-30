@@ -1,4 +1,4 @@
-#
+# Why Is It Taking So Long to Secure Internet Routing?
 
 ## Key ideas
 
@@ -45,3 +45,15 @@ an accidental hijack
 
 example: Pakistan's announcements trying to block Youtube
 
+### RPKI: Resource Public Key Infrastructrure
+
+* each originator of a prefix has a signed (with their public key) record (RPKI record) that says who they are
+* anyone can find AS's public keys, and confirm their signatures -> verify the correct person is announcing the prefix
+* pro: all the security is offline, and can be done daily (so router CPU does not matter)
+* con: only protects the origin, but most routing requires several hops
+
+### BGPSEC
+
+* sign all BGP messages with your peers, and verify them
+* pro: lets us validate every hop on the path (not just the originator)
+* con: online cryptography (and people that router processors are not very fast)
