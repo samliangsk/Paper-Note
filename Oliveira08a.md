@@ -1,6 +1,6 @@
 # In Search of the Elusive Ground Truth: The Internet’s AS-level Connectivity Structure
 
-## AS topologies
+# AS topologies
 
 * compare ground truth and public view
 * graph where nodes are ASes and edges are if those ASes have a business relationship
@@ -11,11 +11,11 @@
     * can reveal business disputes, like when 2 ASes cannot agree to exchange traffic
     * can reveal political choices, like de-peering due to sanctions
 
-## Limitations of current methods
+# Limitations of current methods
 
 * there are invisible and hidden links, they could be missed, or seen if we are careful
 
-## Types of AS business relationships
+# Types of AS business relationships
 
 customer-provider
 * TRANSIT
@@ -39,7 +39,7 @@ Other types of links
     * invisible in the AS PATHs
 * PNI (Private Network Interconnect): a direct link between two ASes
 
-## public views
+# public views
 
 the routing table from many locations
 
@@ -47,7 +47,7 @@ Route views and other public BGP sources
 
 R&E (research and education) netowrks do share their topologies
 
-## Private:
+# Private:
 
 * data from one tier-1
     * router configs: what they say they want
@@ -58,7 +58,7 @@ R&E (research and education) netowrks do share their topologies
 What's ground truth?
 * actual topologies for GEANT and Internet2
 
-## invisible links we cannot see
+# invisible links we cannot see
 
 each routing table the best path out of that location to each prefix
 
@@ -79,5 +79,59 @@ but hard to see connections lower in the hierarchy
 * and links don't usually fail
 * so we need to observe for a long time
 
+# Tier 1 result are looking good
+
+Why?
+
+* no hidden links as every traffic goes through them
+
+# Tier 2 result
+
+Gaps between public view and router config, Why?
+
+* invisible links
+
+```
+    A
+   /|\
+  B-C-D
+```
+
+**If we are monitoring at B, then C-D is invisible**
+
+# Content providers
+
+* huge gap between public and IXP-based
+* why?
+    * content provider doesn't exports links outside it's peer
+    * and few monitor (VPs) in peers
+
+# Summary
+
+* AS data from BGP is usually correct
+    * AS relationship
+
+    +++++
+
+Questions:
+
+multipath tcp?
+
+* Apple uses, combining mobile network and wifi/cable network
+
+Why we are not using traceroute?
+
+* Issues in converting router paths to AS paths
+
+Zmap nmap, any IP scanning tools to scan for links and AS map?
+
+* same as traceroute.
+* but this tells you only about the end host, not the path to get there
+* nor about the AS connectivity
+
+VPNs or MPLS tunnels?
+* VPNs are not usually BGP-based
+* but MPLS could be
 
 
+[outage.ant.isi.edu](outage.ant.isi.edu)
